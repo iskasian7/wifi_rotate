@@ -1,8 +1,12 @@
 {
   "interface": "Wi-Fi",
-  "dwell_seconds": 120,
-  "retry_per_target": 5,
-  "scan_wait_seconds": 4,
+  "dwell_seconds": 45,
+  "retry_per_target": 3,
+  "scan_wait_seconds": 3,
+  "connect_wait_seconds": 12,
+  "shuffle_each_round": true,
+  "min_connect_interval_seconds": 4,
+  "lock_profiles": false,
   "targets": [
     {
       "ssid": "Office-5G",
