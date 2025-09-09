@@ -7,6 +7,12 @@
   "shuffle_each_round": true,
   "min_connect_interval_seconds": 4,
   "lock_profiles": false,
+  "post_connect_ip_wait_seconds": 10,
+  "verify_require_ip": true,
+  "verify_require_gateway": true,
+  "verify_require_ping": false,
+  "verify_ping_host": "192.168.1.1",
+  "disconnect_on_verify_fail": true,
   "targets": [
     {
       "ssid": "Office-5G",
