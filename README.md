@@ -12,9 +12,45 @@ Windows 환경에서 파이썬으로 **지정한 SSID/BSSID를 일정 시간마�
 3. 무선 네트워크 프로필 (SSID/비밀번호) 사전 등록
    - `netsh wlan show profiles` 로 확인 가능
    - 필요시 XML로 추가:
-     ```bat
+   - xml프로필 예시
+```xml
+{
+  "interface": "Wi-Fi",                // 무선 어댑터 이름 (대개 'Wi-Fi' 또는 '무선 LAN')
+  "dwell_seconds": 30,                 // 각 타겟에서 머무를 시간(초)
+  "retry_per_target": 3,                // 타겟당 재시도 횟수(연결 실패/오BSSID 시)
+  "scan_wait_seconds": 4,               // 스캔 후 안정화 대기(초)
+  "connect_wait_seconds": 12,
+  "shuffle_each_round": true,
+  "min_connect_interval_seconds": 4,
+  "lock_profiles": false,
+  "post_connect_ip_wait_seconds": 10,
+  "verify_require_ip": true,
+  "verify_require_gateway": true,
+  "verify_require_ping": false,
+  "verify_ping_host": "192.168.1.1",
+  "disconnect_on_verify_fail": true,
+  "targets": [
+    {
+      "ssid": "Office-5G",
+      "profile": "Office-5G",          // netsh에 저장된 프로필 이름(SSID와 같지 않아도 됨)
+      "bssid": "AA:BB:CC:DD:EE:01"     // 선택: 특정 AP(BSSID)를 원할 때
+    },
+    {
+      "ssid": "Lab-2G",
+      "profile": "Lab-2G"              // BSSID 미지정 → SSID 기준 연결
+    },
+    {
+      "ssid": "Guest",
+      "profile": "Guest",
+      "bssid": "22:33:44:55:66:77"
+    }
+  ]
+}
+```
+    
+```bat
      netsh wlan add profile filename="C:\path\Office-5G.xml" user=all
-     ```
+```
 
 ---
 
